@@ -1,8 +1,13 @@
+import { Analytics } from "@vercel/analytics/react";
+
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Poppins({
+  subsets: ["latin"],
+  weight: "400"
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body 
+        suppressHydrationWarning={true}
+        className={font.className}>
+        <Analytics />
+        {children}
+      </body>
     </html>
   );
 }
